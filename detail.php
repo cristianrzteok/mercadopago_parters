@@ -163,8 +163,7 @@ $base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
                                     );
 
 
-                                    $item = new MercadoPago\Item();
-
+                                    
                                     $item = new MercadoPago\Item();
 
                                     $item->id = '1234';
