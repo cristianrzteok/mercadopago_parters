@@ -1,3 +1,15 @@
+<?php
+// Esto con MVC no PASABA
+// SDK de Mercado Pago
+require __DIR__ .  '/vendor/autoload.php';
+// cargo el access token y el nuevo integratorId
+
+MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+
+$base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
+
+?>
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -131,18 +143,9 @@
                                         </h3>
                                     </div>
 
-
                                     <?php
 
-                                    $base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
-
-
-                                    require 'vendor/autoload.php';
-
-
-                                    MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
-
-                                    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+                                    $preference = new MercadoPago\Preference();
 
                                     $payer = new MercadoPago\Payer();
                                     $payer->name = 'Lalo';
@@ -160,24 +163,20 @@
                                     );
 
 
-                                    $preference = new MercadoPago\Preference();
-
+                                    $item = new MercadoPago\Item();
 
                                     $item = new MercadoPago\Item();
+
                                     $item->id = '1234';
                                     $item->title = $_POST['title'];
                                     $item->description = $_POST['title'];
                                     $item->quantity = $_POST['unit'];
-                                    $item->price = $_POST['price'];
+                                    $item->unit_price = $_POST['price'];
                                     $item->currency_id = 'ARS';
                                     $item->description = 'Dispositivo móvil de Tienda e-commerce';
                                     $item->picture_url = $base_url.$_POST['img'];
 
-                                    $dataItems = array();
-                                    $dataItems = $item;
-
-
-                                    $preference->items = $dataItems;
+                                    $preference->items = array($item);
 
                                     $preference->external_reference = 'cr.zarateok@gmail.com';
 
@@ -203,10 +202,14 @@
                                     $preference->notification_url = "http://pedidos.mercadofarma.com.ar/testController/hooks";
 
                                     $preference->save();
+
+                                    print_r($preference);
                                     ?>
 
 
-                                    <a href="<?php echo $preference->init_point; ?>" class="mercadopago-button button">Pagar la Compra</a>
+
+
+                                      <a href="<?= $preference->init_point ?>" class="button mercadopago-button">Pagar la compra</a>
                                 </div>
                             </div>
                         </div>
