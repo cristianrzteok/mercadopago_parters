@@ -203,7 +203,6 @@ $base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
 
                                     $preference->save();
 
-                                    print_r($preference);
                                     ?>
 
 
