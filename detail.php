@@ -199,8 +199,8 @@ $base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
                                         "installments" => 6
                                     );
 
-                                    $preference->notification_url = "http://pedidos.mercadofarma.com.ar/testController/hooks";
-
+                                  //  $preference->notification_url = "http://pedidos.mercadofarma.com.ar/testController/hooks";
+                                   $preference->notification_url = "https://emercari.net/MercadoPago/webhooks.php";
                                     $preference->save();
 
                                     ?>
