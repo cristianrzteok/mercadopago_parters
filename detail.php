@@ -131,6 +131,7 @@
                                         </h3>
                                     </div>
 
+
                                     <?php
 
                                     $base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
@@ -176,7 +177,7 @@
                                     $dataItems = $item;
 
 
-                                    $preference->items = dataItems;
+                                    $preference->items = $dataItems;
 
                                     $preference->external_reference = 'cr.zarateok@gmail.com';
 
@@ -204,7 +205,6 @@
                                     $preference->save();
                                     ?>
 
-                                    
 
                                     <a href="<?php echo $preference->init_point; ?>" class="mercadopago-button button">Pagar la Compra</a>
                                 </div>
