@@ -198,10 +198,10 @@ $preference->save();
                                             </h3>
                                         </div>
                                         <h3 >
-                                            Cantidad: <?php echo $_POST['unit'] ?>
+                                            Qty: <?php echo $_POST['unit'] ?>
                                         </h3>
                                         <h3 >
-                                            Precio unitario: <?php echo "$" . $_POST['price'] ?>
+                                            Price: <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                     </div>
 
@@ -212,7 +212,7 @@ $preference->save();
                                           </script>
                                         </form> -->
 
-                                    <a href="<?php echo $preference->init_point; ?>" class="mercadopago-button">Pagar la Compra</a>
+                                    <a href="<?php echo $preference->init_point; ?>" class="mercadopago-button button">Pagar la Compra</a>
                                 </div>
                             </div>
                         </div>
