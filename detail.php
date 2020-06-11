@@ -1,77 +1,3 @@
-<?php
-
-$base_url = "https://mercadopagopartner.herokuapp.com/";
-
-
-require 'vendor/autoload.php';
-
-
-MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
-
-MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
-
-$payer = new MercadoPago\Payer();
-$payer->name = 'Lalo';
-$payer->surname = 'Landa';
-$payer->email = 'test_user_63274575@testuser.com';
-$payer->phone = array(
-    "area_code" => '11',
-    "number" => '22223333'
-);
-
-$payer->address = array(
-    "street_name" => 'False',
-    "street_number" => '123',
-    "zip_code" => '1111'
-);
-
-
-$preference = new MercadoPago\Preference();
-
-
-$item = new MercadoPago\Item();
-$item->id = '1234';
-$item->title = $_POST['title'];
-$item->description = $_POST['title'];
-$item->quantity = $_POST['unit'];
-$item->price = $_POST['price'];
-$item->currency_id = 'ARS';
-$item->description = 'Dispositivo móvil de Tienda e-commerce';
-$item->picture_url = $base_url.$_POST['img'];
-
-$dataItems = array();
-$dataItems = $item;
-
-
-$preference->items = dataItems;
-
-$preference->external_reference = 'cr.zarateok@gmail.com';
-
-$preference->auto_return = 'approved';
-
-$preference->back_urls = array(
-  "success" => "https://mercadopagopartner.herokuapp.com/success.php",
-  "failure" =>"https://mercadopagopartner.herokuapp.com/failure.php",
-  "pending" => "https://https://mercadopagopartner.herokuapp.com/pending.php");
-
-$preference->payer = $payer;
-
-$preference->payment_methods = array(
-    "excluded_payment_methods" => array(
-      array("id" => "amex")
-    ),
-    "excluded_payment_types" => array(
-      array("id" => "atm")
-    ),
-    "installments" => 6
-);
-
-$preference->notification_url = "http://pedidos.mercadofarma.com.ar/testController/hooks";
-
-$preference->save();
-?>
-
-
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -204,6 +130,81 @@ $preference->save();
                                             Price: <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                     </div>
+
+                                    <?php
+
+                                    $base_url = "https://crzarateok-mp-ecommerce-php.herokuapp.com/";
+
+
+                                    require 'vendor/autoload.php';
+
+
+                                    MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+
+                                    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+
+                                    $payer = new MercadoPago\Payer();
+                                    $payer->name = 'Lalo';
+                                    $payer->surname = 'Landa';
+                                    $payer->email = 'test_user_63274575@testuser.com';
+                                    $payer->phone = array(
+                                        "area_code" => '11',
+                                        "number" => '22223333'
+                                    );
+
+                                    $payer->address = array(
+                                        "street_name" => 'False',
+                                        "street_number" => '123',
+                                        "zip_code" => '1111'
+                                    );
+
+
+                                    $preference = new MercadoPago\Preference();
+
+
+                                    $item = new MercadoPago\Item();
+                                    $item->id = '1234';
+                                    $item->title = $_POST['title'];
+                                    $item->description = $_POST['title'];
+                                    $item->quantity = $_POST['unit'];
+                                    $item->price = $_POST['price'];
+                                    $item->currency_id = 'ARS';
+                                    $item->description = 'Dispositivo móvil de Tienda e-commerce';
+                                    $item->picture_url = $base_url.$_POST['img'];
+
+                                    $dataItems = array();
+                                    $dataItems = $item;
+
+
+                                    $preference->items = dataItems;
+
+                                    $preference->external_reference = 'cr.zarateok@gmail.com';
+
+                                    $preference->auto_return = 'approved';
+
+                                    $preference->back_urls = array(
+                                      "success" => "https://crzarateok-mp-ecommerce-php.herokuapp.com/success.php",
+                                      "failure" =>"https://crzarateok-mp-ecommerce-php.herokuapp.com/failure.php",
+                                      "pending" => "https://crzarateok-mp-ecommerce-php.herokuapp.com/pending.php");
+
+                                    $preference->payer = $payer;
+
+                                    $preference->payment_methods = array(
+                                        "excluded_payment_methods" => array(
+                                          array("id" => "amex")
+                                        ),
+                                        "excluded_payment_types" => array(
+                                          array("id" => "atm")
+                                        ),
+                                        "installments" => 6
+                                    );
+
+                                    $preference->notification_url = "http://pedidos.mercadofarma.com.ar/testController/hooks";
+
+                                    $preference->save();
+                                    ?>
+
+                                    
 
                                     <a href="<?php echo $preference->init_point; ?>" class="mercadopago-button button">Pagar la Compra</a>
                                 </div>
